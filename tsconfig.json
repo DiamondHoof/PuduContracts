@@ -10,9 +10,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "outDir": "dist",
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
     "rootDirs": ["./src", "./scripts", "./test"]
   },
-  "include": ["./src", "./scripts"],
+  "include": ["./src", "./scripts", "./test"],
   "files": ["./hardhat.config.ts"]
 }
