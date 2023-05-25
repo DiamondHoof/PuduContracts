@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: BUSL-1.1
+// SPDX-License-Identifier: BSD-3
 // Pudu Community
 // Pudolphus Diamondhoof
 // http://pudu.community/
