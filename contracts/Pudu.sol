@@ -69,9 +69,10 @@ contract Pudu is ERC20, Ownable {
         emit TaxStatusUpdated(taxStatus);
     }
 
-    function _updateTaxExclusion(address updatedAddress, bool shouldBeTaxed) external onlyOwner {
-        _excludedFromTaxFees[updatedAddress] = shouldBeTaxed;
-        emit TaxExclusionUpdate(updatedAddress, shouldBeTaxed);
+    function _updateTaxExclusion(address updatedAddress, bool isExcluded) external onlyOwner {
+        require(updatedAddress != address(0), "Cannot exclude the zero address");
+        _excludedFromTaxFees[updatedAddress] = isExcluded;
+        emit TaxExclusionUpdate(updatedAddress, isExcluded);
     }
 
     // Events
