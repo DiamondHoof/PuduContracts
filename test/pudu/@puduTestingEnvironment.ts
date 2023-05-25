@@ -11,6 +11,7 @@ export class PuduTestingEnvironment {
     nftDropSigner: SignerWithAddress;
     guest1Signer: SignerWithAddress;
     guest2Signer: SignerWithAddress;
+    guest3Signer: SignerWithAddress;
     // Proxy Contracts
     puduContract: Contract;
     // Initialize this testing environment
@@ -22,6 +23,7 @@ export class PuduTestingEnvironment {
         this.nftDropSigner = this.accountSigners[2];
         this.guest1Signer = this.accountSigners[3];
         this.guest2Signer = this.accountSigners[4];
+        this.guest3Signer = this.accountSigners[5];
         // Set Contracts
         this.puduContract = await deployPudu(
             await this.developmentFundSigner.getAddress(),
