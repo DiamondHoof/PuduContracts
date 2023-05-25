@@ -28,18 +28,15 @@ export function transfer()  {
         const guest1Balance: BigNumber = await environment.puduContract.balanceOf(environment.guest1Signer.address);
         const guest2Balance: BigNumber = await environment.puduContract.balanceOf(environment.guest2Signer.address);
         const developmentFundBalance: BigNumber = await environment.puduContract.balanceOf(environment.developmentFundSigner.address);
-        console.log(`\t\t guest1Balance: ${formatEther(guest1Balance)} | guest2Balance: ${formatEther(guest2Balance)} | developmentFundBalance: ${formatEther(developmentFundBalance)}`);
         // Calculate the expected tax fees for a transfer
         const [recipientReceives, amountTaxedNumber]: [BigNumber, BigNumber] = await environment.puduContract.connect(environment.guest1Signer)
             .calculateTax(environment.guest1Signer.address, environment.guest2Signer.address, amountTransferred);
-        console.log(`\t\t recipientReceives: ${formatEther(recipientReceives)} | amountTaxedNumber: ${formatEther(amountTaxedNumber)}`);
         // Execute the transfer
         await environment.puduContract.connect(environment.guest1Signer).transfer(environment.guest2Signer.address, amountTransferred);
         // Read balances after transfer
         const guest1BalanceAfter: BigNumber = await environment.puduContract.balanceOf(environment.guest1Signer.address);
         const guest2BalanceAfter: BigNumber = await environment.puduContract.balanceOf(environment.guest2Signer.address);
         const developmentFundBalanceAfter: BigNumber = await environment.puduContract.balanceOf(environment.developmentFundSigner.address);
-        console.log(`\t\t guest1BalanceAfter: ${formatEther(guest1BalanceAfter)} | guest2BalanceAfter: ${formatEther(guest2BalanceAfter)} | developmentFundBalanceAfter: ${formatEther(developmentFundBalanceAfter)}`);
         // Validate that guest2 had received the expected amount
         await expect(guest2Balance.add(recipientReceives)).to.be.equal(guest2BalanceAfter);
         // Validate guest1 subtracted amounts
